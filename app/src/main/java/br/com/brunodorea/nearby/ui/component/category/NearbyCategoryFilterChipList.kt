@@ -22,12 +22,15 @@ import kotlin.collections.listOf
 fun NearbyCategoryFilterChipList(
     modifier: Modifier = Modifier,
     categories: List<Category>,
-    onSelectedCategoryChange: (Category) -> Unit
+    onSelectedCategoryChanged: (Category) -> Unit
 ) {
     var selectedCategoryId by remember { mutableStateOf(categories.firstOrNull()?.id.orEmpty()) }
 
-    LaunchedEffect(key1 = selectedCategoryId){
-        val selectedCategoryOrNull = categories.find { it.id == selectedCategoryId}
+    LaunchedEffect(key1 = selectedCategoryId) {
+        val selectedCategoryOrNull = categories.find { it.id == selectedCategoryId }
+        selectedCategoryOrNull?.let {
+            onSelectedCategoryChanged(it)
+        }
     }
 
     LazyRow(
@@ -35,15 +38,12 @@ fun NearbyCategoryFilterChipList(
         contentPadding = PaddingValues(horizontal = 24.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(items = categories, key = { it.id }) { category -> 
-            NearbyCategoryFilterChip(
-                category = category,
+        items(items = categories, key = { it.id }) { category ->
+            NearbyCategoryFilterChip(category = category,
                 isSelected = category.id == selectedCategoryId,
                 onClick = { isSelected ->
-                    if (isSelected)
-                        selectedCategoryId = category.id
-                }
-            )
+                    if (isSelected) selectedCategoryId = category.id
+                })
         }
     }
 }
@@ -54,6 +54,6 @@ private fun NearbyCategoryFilterChipListPreview() {
     NearbyCategoryFilterChipList(
         modifier = Modifier.fillMaxWidth(),
         categories = mockCategories,
-        onSelectedCategoryChange = {}
+        onSelectedCategoryChanged = {}
     )
 }
