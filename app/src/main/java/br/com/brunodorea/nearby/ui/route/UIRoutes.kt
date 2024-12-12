@@ -1,4 +1,4 @@
-package br.com.brunodorea.nearby.ui.screen.route
+package br.com.brunodorea.nearby.ui.route
 
 import kotlinx.serialization.Serializable
 
@@ -10,3 +10,6 @@ data object Welcome
 
 @Serializable
 data object Home
+
+@Serializable
+data object QRCodeScanner

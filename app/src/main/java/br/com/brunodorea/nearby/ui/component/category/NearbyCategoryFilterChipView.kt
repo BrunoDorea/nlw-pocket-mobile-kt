@@ -1,4 +1,4 @@
-package br.com.brunodorea.nearby.data.model
+package br.com.brunodorea.nearby.ui.component.category
 
 import androidx.annotation.DrawableRes
 import br.com.brunodorea.nearby.R

@@ -1,4 +1,4 @@
-package br.com.brunodorea.nearby.ui.screen
+package br.com.brunodorea.nearby.ui.screen.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
